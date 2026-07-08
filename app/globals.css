@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.bg-animated {
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(59, 130, 246, 0.2); }
+  50% { border-color: rgba(59, 130, 246, 0.5); }
+}
+
+.border-animated {
+  animation: borderGlow 4s ease-in-out infinite;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(59, 130, 246, 0.15),
+    rgba(59, 130, 246, 0.3),
+    rgba(59, 130, 246, 0.15),
+    transparent
+  );
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-animated,
+  .border-animated {
+    animation: none;
+  }
+}
