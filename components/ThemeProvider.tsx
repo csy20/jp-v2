@@ -22,9 +22,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (stored === 'dark') {
       setIsDark(true)
       document.documentElement.classList.add('dark')
-    } else if (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true)
-      document.documentElement.classList.add('dark')
     }
   }, [])
 
