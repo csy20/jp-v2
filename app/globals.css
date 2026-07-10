@@ -2,50 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --gold: #d4af37;
+  --gold-soft: #c9a227;
+}
+
 ::selection {
-  background: rgba(59, 130, 246, 0.2);
+  background: rgba(212, 175, 55, 0.3);
+  color: inherit;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme surfaces */
+.theme-bg {
+  @apply bg-white text-slate-900 transition-colors duration-500;
+}
+
+.dark .theme-bg {
+  @apply bg-luxury-black text-white;
+}
+
+.theme-card {
+  @apply bg-white border border-slate-200 shadow-sm transition-colors duration-500;
+}
+
+.dark .theme-card {
+  @apply bg-luxury-card border-luxury-border shadow-none;
+}
+
+.theme-card-soft {
+  @apply bg-slate-50 border border-slate-200 transition-colors duration-500;
+}
+
+.dark .theme-card-soft {
+  @apply bg-[#1a1a1a] border-luxury-border;
+}
+
+.theme-muted {
+  @apply text-slate-500;
+}
+
+.dark .theme-muted {
+  @apply text-luxury-muted;
+}
+
+.theme-heading {
+  @apply text-slate-900;
+}
+
+.dark .theme-heading {
+  @apply text-white;
+}
+
+.gold-text {
+  @apply text-gold-600;
+}
+
+.dark .gold-text {
+  @apply text-gold-400;
+}
+
+.section-num {
+  @apply text-5xl md:text-6xl font-bold tracking-tighter select-none;
+  color: rgba(212, 175, 55, 0.12);
+}
+
+.dark .section-num {
+  color: rgba(212, 175, 55, 0.15);
+}
+
 .text-balance {
   text-wrap: balance;
 }
 
-.bg-animated {
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #a8841f, #d4af37, #f5edd6, #c9a227);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.dark .text-gold-gradient {
+  background: linear-gradient(135deg, #c9a227, #d4af37, #f5edd6, #e0c47a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@keyframes borderGlow {
-  0%, 100% { border-color: rgba(59, 130, 246, 0.2); }
-  50% { border-color: rgba(59, 130, 246, 0.5); }
+/* Subtle gold border glow on dark */
+.border-gold-glow {
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12);
 }
 
-.border-animated {
-  animation: borderGlow 4s ease-in-out infinite;
+.dark .border-gold-glow {
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.2), 0 0 24px rgba(212, 175, 55, 0.06);
 }
 
-.section-divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(59, 130, 246, 0.15),
-    rgba(59, 130, 246, 0.3),
-    rgba(59, 130, 246, 0.15),
-    transparent
-  );
-}
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -55,17 +117,28 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.25);
+  background: rgba(212, 175, 55, 0.35);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.4);
+  background: rgba(212, 175, 55, 0.55);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .bg-animated,
-  .border-animated {
-    animation: none;
-  }
+/* Map iframe soft corners */
+.map-frame {
+  @apply w-full h-full rounded-lg overflow-hidden;
+}
+
+/* WhatsApp green button */
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold px-4 py-2.5 transition-colors shadow-md;
+}
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-500 text-luxury-black font-semibold px-6 py-2.5 shadow-gold-sm hover:shadow-gold transition-all;
+}
+
+.btn-outline-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 text-gold-700 dark:text-gold-400 px-5 py-2 hover:bg-gold-500/10 transition-colors;
 }

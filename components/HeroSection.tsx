@@ -1,275 +1,244 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
 import Image from 'next/image'
-import { ExternalLink } from 'lucide-react'
-import { useTheme } from './ThemeProvider'
-import StatsCard from './StatsCard'
-
-const stats = [
-  { label: 'Expert Guidance', value: 'Trusted', icon: 'TrendingUp' },
-  { label: 'Happy Customers', value: '1000+', icon: 'Users' },
-  { label: 'Clothing Items', value: '5000+', icon: 'Package' },
-  { label: 'Fashion Trends', value: '100+', icon: 'Star' }
-]
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-}
-
-const imageFloatVariants = {
-  animate: {
-    y: [0, -12, 0],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  },
-}
-
-const particles = Array.from({ length: 8 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 6 + 3,
-  delay: Math.random() * 5,
-  duration: Math.random() * 4 + 4,
-}))
-
-function WordReveal({ text, className }: { text: string; className: string }) {
-  const words = text.split(' ')
-  return (
-    <span className={className}>
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 + i * 0.2, duration: 0.5, ease: 'easeOut' }}
-          className="inline-block mr-[0.25em] last:mr-0"
-        >
-          {word}
-        </motion.span>
-      ))}
-    </span>
-  )
-}
-
-function MagneticButton({ children, href, className }: { children: React.ReactNode; href: string; className: string }) {
-  const ref = useRef<HTMLAnchorElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const springX = useSpring(x, { stiffness: 150, damping: 12 })
-  const springY = useSpring(y, { stiffness: 150, damping: 12 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = ref.current?.getBoundingClientRect()
-    if (!rect) return
-    const offsetX = e.clientX - rect.left - rect.width / 2
-    const offsetY = e.clientY - rect.top - rect.height / 2
-    x.set(offsetX * 0.25)
-    y.set(offsetY * 0.25)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-  }
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-      style={{ x: springX, y: springY }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {children}
-    </motion.a>
-  )
-}
+import { motion } from 'framer-motion'
+import { OWNER_NAME, QUOTE, socialLinks, STORE_NAME, WHATSAPP_URL, PHONE_DISPLAY } from '@/lib/constants'
+import WhatsAppIcon from './WhatsAppIcon'
 
 export default function HeroSection() {
-  const { isDark } = useTheme()
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 pb-24 overflow-hidden">
-      {/* Particles */}
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className={`absolute rounded-full pointer-events-none ${
-            isDark ? 'bg-blue-400/10' : 'bg-blue-500/15'
-          }`}
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-          }}
-          animate={{
-            y: [0, -40, 0],
-            x: [0, 15, 0],
-            opacity: [0.2, 0.7, 0.2],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
+    <section
+      id="home"
+      className="relative pt-24 md:pt-28 pb-10 md:pb-14 px-4 md:px-6 overflow-hidden"
+    >
+      {/* Ambient scene light */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-24 left-1/3 w-[480px] h-[480px] rounded-full bg-gold-400/10 dark:bg-gold-500/12 blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[420px] h-[420px] rounded-full bg-amber-200/20 dark:bg-gold-600/10 blur-3xl" />
+      </div>
 
-      <motion.div
-        className="relative z-10 max-w-6xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="grid md:grid-cols-2 gap-8 md:gap-14 items-center">
-          {/* Left - Content */}
-          <motion.div className="text-left order-2 md:order-1" variants={itemVariants}>
-            <WordReveal
-              text="Jageshwar Sahu"
-              className={`font-display text-5xl md:text-7xl font-bold mb-4 block leading-tight ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}
-            />
+      <div className="relative max-w-7xl mx-auto">
+        <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-gold-500/20 dark:border-gold-500/25 shadow-xl shadow-gold-900/5 dark:shadow-gold dark:bg-[#0c0c0c] bg-white">
+          {/* Soft gold edge line */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/60 to-transparent z-20" />
 
-            <WordReveal
-              text="Premium Cloth Merchant • Fashion Expert"
-              className={`text-base md:text-lg tracking-[0.15em] uppercase mb-6 block ${
-                isDark ? 'text-blue-400' : 'text-blue-600'
-              }`}
-            />
-
-            <motion.p
-              className={`text-base md:text-lg leading-relaxed max-w-xl text-balance ${
-                isDark ? 'text-slate-400' : 'text-slate-600'
-              }`}
-              variants={itemVariants}
+          <div className="grid lg:grid-cols-12 min-h-[480px] md:min-h-[540px] lg:min-h-[560px]">
+            {/* ── Left: copy ── */}
+            <motion.div
+              className="relative z-10 lg:col-span-6 xl:col-span-5 flex flex-col justify-center px-6 sm:px-8 md:px-12 lg:px-14 py-10 md:py-14
+                bg-gradient-to-br from-white via-white to-amber-50/40
+                dark:from-[#0c0c0c] dark:via-[#0e0e0e] dark:to-[#14100a]"
+              initial={{ opacity: 0, x: -28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
             >
-              SITASONI trend, founded by Jageshwar Sahu, is redefining premium fashion in India. From luxury fabrics to statement wear, every design is crafted to celebrate individuality.
-              With deep roots in <a href="https://share.google/gN3YEmaXIgcK6dUwc" target="_blank" rel="noopener noreferrer" className="text-blue-500 font-semibold hover:underline cursor-pointer">Nawagarh</a>, Chhattisgarh, and a growing digital presence, we blend tradition with modern fashion tech to deliver premium looks that trend nationwide.
-            </motion.p>
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-5">
+                <span className="h-px w-8 bg-gradient-to-r from-gold-500 to-transparent" />
+                <p className="text-[11px] md:text-xs tracking-[0.28em] uppercase text-gold-600 dark:text-gold-400 font-semibold">
+                  Founder & Owner
+                </p>
+              </div>
 
-            {/* Stats */}
-            <motion.div className="grid grid-cols-2 gap-3 md:gap-4 mb-8" variants={itemVariants}>
-              {stats.map((stat, index) => (
-                <StatsCard
-                  key={index}
-                  label={stat.label}
-                  value={stat.value}
-                  icon={stat.icon}
-                  index={index}
-                />
-              ))}
-            </motion.div>
+              <h1 className="font-display text-[2.6rem] sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-slate-900 dark:text-white mb-4">
+                {OWNER_NAME.split(' ').map((word, i) => (
+                  <span key={word} className="inline-block mr-[0.28em] last:mr-0">
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 + i * 0.12, duration: 0.5 }}
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                ))}
+              </h1>
 
-            {/* CTA Button */}
-            <motion.div variants={itemVariants}>
-              <MagneticButton
-                href="https://sitasoni.in"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-7 py-3.5 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-500 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 cursor-pointer"
+              <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 mb-7 max-w-md">
+                Founder & Owner of{' '}
+                <span className="font-semibold text-gold-600 dark:text-gold-400">
+                  {STORE_NAME}
+                </span>
+              </p>
+
+              {/* Socials */}
+              <div className="flex items-center gap-2.5 mb-8">
+                {socialLinks.map((s, i) => (
+                  <motion.a
+                    key={s.name}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={s.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4 + i * 0.08 }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center
+                      border border-slate-200 dark:border-white/10
+                      bg-white/80 dark:bg-white/5
+                      text-slate-500 dark:text-slate-400
+                      hover:border-gold-500 hover:text-gold-600 dark:hover:text-gold-400
+                      hover:shadow-gold-sm transition-all duration-300"
+                  >
+                    <s.icon className="w-4 h-4" />
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Quote */}
+              <motion.blockquote
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+                className="relative max-w-md rounded-2xl px-5 py-4
+                  border border-gold-500/20 dark:border-gold-500/25
+                  bg-gradient-to-br from-amber-50/90 to-white
+                  dark:from-gold-500/10 dark:to-white/[0.03]
+                  backdrop-blur-sm"
               >
-                Visit Our Store <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
-              </MagneticButton>
-            </motion.div>
-          </motion.div>
+                <span className="absolute -top-3 left-4 text-4xl leading-none text-gold-500/70 dark:text-gold-400/80 font-display select-none">
+                  “
+                </span>
+                <p className="text-sm md:text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 italic pl-1">
+                  {QUOTE.text}
+                </p>
+                <footer className="mt-2.5 text-right text-sm font-medium text-gold-600 dark:text-gold-400">
+                  — {QUOTE.author}
+                </footer>
+              </motion.blockquote>
 
-          {/* Right - Profile Image */}
-          <motion.div
-            className="relative flex justify-center order-1 md:order-2"
-            variants={itemVariants}
-          >
-            <div className="relative">
-              {/* Glow behind image */}
+              {/* CTA row */}
               <motion.div
-                className={`absolute inset-0 rounded-full blur-3xl ${
-                  isDark ? 'bg-blue-500/10' : 'bg-blue-500/10'
-                }`}
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              />
-
-              <motion.div
-                className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 mx-auto rounded-full overflow-hidden ring-2 ring-blue-300/30 shadow-xl"
-                variants={imageFloatVariants}
-                animate="animate"
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                className="mt-8 flex flex-wrap items-center gap-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
               >
-                <Image
-                  src="/jaggu_profile.jpeg"
-                  alt="Jageshwar Sahu Profile"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className={`absolute inset-0 ${
-                  isDark ? 'bg-gradient-to-t from-blue-950/30 to-transparent' : 'bg-gradient-to-t from-blue-900/10 to-transparent'
-                }`} />
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-semibold px-5 py-2.5 shadow-md transition-colors"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  Chat on WhatsApp
+                </a>
+                <a
+                  href="#store"
+                  className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 text-gold-700 dark:text-gold-400 text-sm font-semibold px-5 py-2.5 hover:bg-gold-500/10 transition-colors"
+                >
+                  Visit Store Info
+                </a>
               </motion.div>
+            </motion.div>
 
-              {/* Floating Elements */}
-              <motion.div
-                className={`absolute -top-3 -right-3 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full ${
-                  isDark ? 'bg-blue-400/20' : 'bg-blue-500/20'
-                }`}
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360],
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              />
-              <motion.div
-                className={`absolute -bottom-3 -left-3 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full ${
-                  isDark ? 'bg-blue-300/20' : 'bg-blue-400/20'
-                }`}
-                animate={{
-                  scale: [1, 1.3, 1],
-                  rotate: [360, 180, 0],
-                  y: [0, 10, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: 'linear',
+            {/* ── Right: portrait stage ── */}
+            <motion.div
+              className="relative lg:col-span-6 xl:col-span-7 min-h-[380px] sm:min-h-[440px] lg:min-h-full"
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: 'easeOut' }}
+            >
+              {/* Stage background — light */}
+              <div
+                className="absolute inset-0 dark:hidden"
+                style={{
+                  background: `
+                    radial-gradient(ellipse 80% 70% at 70% 45%, rgba(212,175,55,0.18) 0%, transparent 55%),
+                    linear-gradient(145deg, #f7f3ea 0%, #ebe4d4 35%, #d9d0bc 70%, #cfc4ae 100%)
+                  `,
                 }}
               />
-            </div>
-          </motion.div>
+              {/* Stage background — dark (luxury boutique feel) */}
+              <div
+                className="absolute inset-0 hidden dark:block"
+                style={{
+                  background: `
+                    radial-gradient(ellipse 70% 60% at 65% 40%, rgba(212,175,55,0.22) 0%, transparent 50%),
+                    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                    linear-gradient(160deg, #1a1510 0%, #0d0c0a 45%, #12100c 100%)
+                  `,
+                }}
+              />
+
+              {/* Soft bokeh / light orbs */}
+              <div className="absolute top-[12%] left-[15%] w-24 h-24 rounded-full bg-gold-300/25 dark:bg-gold-400/15 blur-2xl" />
+              <div className="absolute bottom-[20%] left-[10%] w-32 h-32 rounded-full bg-amber-200/20 dark:bg-gold-600/10 blur-3xl" />
+              <div className="absolute top-[20%] right-[18%] w-16 h-16 rounded-full bg-white/40 dark:bg-gold-300/10 blur-xl" />
+
+              {/* Vertical gold accent rail */}
+              <div className="absolute left-0 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-gold-500/40 to-transparent hidden lg:block" />
+
+              {/* Brand badge */}
+              <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20">
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 flex items-center justify-center shadow-lg shadow-gold-600/30 ring-2 ring-white/40 dark:ring-gold-400/20">
+                    <span className="font-display font-bold text-xl sm:text-2xl text-luxury-black leading-none">
+                      S
+                    </span>
+                  </div>
+                  <div className="text-center leading-tight">
+                    <div className="text-[10px] sm:text-[11px] tracking-[0.18em] font-semibold text-gold-700 dark:text-gold-400">
+                      SITASONI™
+                    </div>
+                    <div className="text-[9px] tracking-[0.22em] uppercase text-slate-500 dark:text-slate-400">
+                      trend
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portrait frame */}
+              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-4 sm:px-8 lg:pr-10 xl:pr-16">
+                <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[400px]">
+                  {/* Glow behind portrait */}
+                  <div className="absolute -inset-6 sm:-inset-8 rounded-[50%] bg-gold-400/20 dark:bg-gold-500/25 blur-3xl" />
+
+                  {/* Arch frame */}
+                  <div className="relative aspect-[3/4] w-full">
+                    {/* Outer gold ring */}
+                    <div className="absolute -inset-[3px] rounded-t-full rounded-b-2xl bg-gradient-to-b from-gold-300 via-gold-500/80 to-gold-700/40 dark:from-gold-400 dark:via-gold-600/70 dark:to-transparent opacity-90" />
+
+                    {/* Inner photo clip */}
+                    <div className="absolute inset-0 rounded-t-full rounded-b-2xl overflow-hidden bg-slate-200 dark:bg-[#1a1510] shadow-2xl">
+                      <Image
+                        src="/jaggu_profile.jpeg"
+                        alt={OWNER_NAME}
+                        fill
+                        className="object-cover object-[center_15%] scale-[1.02]"
+                        sizes="(max-width: 768px) 300px, 400px"
+                        priority
+                      />
+                      {/* Cinematic overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 dark:from-black/60 dark:to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent dark:from-black/25" />
+                      {/* Gold sheen at top of arch */}
+                      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-gold-200/20 dark:from-gold-400/15 to-transparent" />
+                    </div>
+
+                    {/* Floating name chip on photo */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 w-[90%]">
+                      <div className="rounded-xl px-3 py-2.5 text-center
+                        bg-white/85 dark:bg-black/55 backdrop-blur-md
+                        border border-white/50 dark:border-gold-500/20
+                        shadow-lg"
+                      >
+                        <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate">
+                          {OWNER_NAME}
+                        </p>
+                        <p className="text-[10px] sm:text-[11px] text-gold-700 dark:text-gold-400 tracking-wide">
+                          {PHONE_DISPLAY} · Nawagarh
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

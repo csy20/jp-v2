@@ -1,106 +1,101 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-  Home as HomeIcon,
-  Sun,
-  Moon,
-  Youtube,
-  Facebook,
-  Instagram
-} from 'lucide-react'
+import { Home as HomeIcon, Sun, Moon, Youtube, Facebook, Instagram } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
+import WhatsAppIcon from './WhatsAppIcon'
+import { WHATSAPP_URL, socialLinks } from '@/lib/constants'
 
-const socialLinks = [
-  {
-    name: 'YouTube',
-    url: 'https://youtube.com/@sitasonitrend?si=gt1VUQfxfp_QCnbW',
-    icon: Youtube,
-    color: 'hover:text-red-400'
-  },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/sitasoni.in?igsh=MXQ0Y25sOXJ2YXd1Zg==',
-    icon: Instagram,
-    color: 'hover:text-pink-400'
-  },
-  {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/share/1ARaNmyZRu/',
-    icon: Facebook,
-    color: 'hover:text-blue-400'
-  }
-]
+const iconMap = {
+  YouTube: Youtube,
+  Instagram: Instagram,
+  Facebook: Facebook,
+} as const
 
 export default function DockerNav() {
   const { isDark, toggleTheme } = useTheme()
 
   return (
     <motion.div
-      className={`fixed bottom-4 md:bottom-6 left-1/2 z-50 ${
+      className={`fixed bottom-4 md:bottom-6 left-1/2 z-50 backdrop-blur-xl rounded-full px-4 py-2 md:px-5 md:py-2.5 shadow-lg border ${
         isDark
-          ? 'bg-slate-900/80 border-slate-700/50'
-          : 'bg-white/80 border-slate-200'
-      } backdrop-blur-xl rounded-full px-5 py-2.5 md:px-6 md:py-3 shadow-lg border border-animated`}
+          ? 'bg-luxury-card/90 border-luxury-border shadow-gold-sm'
+          : 'bg-white/90 border-slate-200'
+      }`}
       initial={{ y: 80, opacity: 0, x: '-50%' }}
       animate={{ y: 0, opacity: 1, x: '-50%' }}
-      transition={{ duration: 0.6, delay: 0.8, type: 'spring', stiffness: 100, damping: 15 }}
-      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 100, damping: 15 }}
     >
-      <div className="flex items-center space-x-5 md:space-x-8">
-        {/* Home */}
-        <motion.button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className={`p-2 rounded-full transition-colors duration-300 ${
-            isDark ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+      <div className="flex items-center space-x-3 md:space-x-5">
+        <motion.a
+          href="#home"
+          className={`p-2 rounded-full transition-colors ${
+            isDark
+              ? 'text-slate-400 hover:text-gold-400 hover:bg-white/5'
+              : 'text-slate-500 hover:text-gold-600 hover:bg-slate-100'
           }`}
           title="Home"
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.9 }}
         >
           <HomeIcon className="w-4 h-4 md:w-5 md:h-5" />
-        </motion.button>
+        </motion.a>
 
-        {/* Social Icons */}
-        {socialLinks.map((social, index) => (
-          <motion.a
-            key={index}
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`p-2 rounded-full transition-colors duration-300 ${
-              isDark ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-            } ${social.color}`}
-            title={social.name}
-            whileHover={{ scale: 1.2, rotate: 6 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <social.icon className="w-4 h-4 md:w-5 md:h-5" />
-          </motion.a>
-        ))}
-
-        {/* Separator */}
-        <div className={`w-px h-5 md:h-6 ${isDark ? 'bg-slate-700' : 'bg-slate-300'}`} />
-
-        {/* Theme Toggle */}
-        <motion.button
-          onClick={toggleTheme}
-          className={`p-2 rounded-full transition-colors duration-300 ${
-            isDark ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-          }`}
-          title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+        <motion.a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 rounded-full text-[#25D366] hover:bg-[#25D366]/10 transition-colors"
+          title="Chat on WhatsApp"
+          aria-label="Chat on WhatsApp"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
         >
-          <motion.div
-            key={isDark ? 'sun' : 'moon'}
-            initial={{ rotate: -90, opacity: 0 }}
-            animate={{ rotate: 0, opacity: 1 }}
-            exit={{ rotate: 90, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {isDark ? <Sun className="w-4 h-4 md:w-5 md:h-5" /> : <Moon className="w-4 h-4 md:w-5 md:h-5" />}
-          </motion.div>
+          <WhatsAppIcon className="w-4 h-4 md:w-5 md:h-5" />
+        </motion.a>
+
+        {socialLinks.map((social) => {
+          const Icon = iconMap[social.name as keyof typeof iconMap]
+          if (!Icon) return null
+          return (
+            <motion.a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-2 rounded-full transition-colors ${
+                isDark
+                  ? 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title={social.name}
+              whileHover={{ scale: 1.15, rotate: 6 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Icon className="w-4 h-4 md:w-5 md:h-5" />
+            </motion.a>
+          )
+        })}
+
+        <div className={`w-px h-5 ${isDark ? 'bg-luxury-border' : 'bg-slate-300'}`} />
+
+        <motion.button
+          type="button"
+          onClick={toggleTheme}
+          className={`p-2 rounded-full transition-colors ${
+            isDark
+              ? 'text-gold-400 hover:text-gold-300 hover:bg-white/5'
+              : 'text-slate-500 hover:text-gold-600 hover:bg-slate-100'
+          }`}
+          title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isDark ? (
+            <Sun className="w-4 h-4 md:w-5 md:h-5" />
+          ) : (
+            <Moon className="w-4 h-4 md:w-5 md:h-5" />
+          )}
         </motion.button>
       </div>
     </motion.div>

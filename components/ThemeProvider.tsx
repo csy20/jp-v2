@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({
   isDark: false,
-  toggleTheme: () => {}
+  toggleTheme: () => {},
 })
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -19,25 +19,21 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true)
     const stored = localStorage.getItem('theme')
-    if (stored === 'dark') {
-      setIsDark(true)
-      document.documentElement.classList.add('dark')
-    }
+    const dark = stored === 'dark'
+    setIsDark(dark)
+    document.documentElement.classList.toggle('dark', dark)
   }, [])
 
   useEffect(() => {
     if (!mounted) return
-    if (isDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.classList.toggle('dark', isDark)
   }, [isDark, mounted])
 
   const toggleTheme = () => {
     const next = !isDark
     setIsDark(next)
     localStorage.setItem('theme', next ? 'dark' : 'light')
+    document.documentElement.classList.toggle('dark', next)
   }
 
   return (
