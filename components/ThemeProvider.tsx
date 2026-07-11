@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
+const THEME_STORAGE_KEY = 'sitasoni-theme'
+
 interface ThemeContextType {
   isDark: boolean
   toggleTheme: () => void
@@ -12,16 +14,21 @@ const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {},
 })
 
+function applyTheme(dark: boolean) {
+  document.documentElement.classList.toggle('dark', dark)
+  localStorage.setItem(THEME_STORAGE_KEY, dark ? 'dark' : 'light')
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    const stored = localStorage.getItem('theme')
+    const stored = localStorage.getItem(THEME_STORAGE_KEY)
     const dark = stored === 'dark'
     setIsDark(dark)
-    document.documentElement.classList.toggle('dark', dark)
+    applyTheme(dark)
   }, [])
 
   useEffect(() => {
@@ -32,8 +39,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const toggleTheme = () => {
     const next = !isDark
     setIsDark(next)
-    localStorage.setItem('theme', next ? 'dark' : 'light')
-    document.documentElement.classList.toggle('dark', next)
+    applyTheme(next)
   }
 
   return (

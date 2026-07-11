@@ -47,7 +47,7 @@ export default function HoursSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {/* Status card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="col-span-2 sm:col-span-3 lg:col-span-1 theme-card-soft rounded-xl p-4 md:p-5 border-gold-glow flex flex-col justify-center"
@@ -75,7 +75,7 @@ export default function HoursSection() {
           {days.map((day, i) => (
             <motion.div
               key={day.key}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 * (i + 1) }}

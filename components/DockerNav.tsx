@@ -17,14 +17,12 @@ export default function DockerNav() {
 
   return (
     <motion.div
-      className={`fixed bottom-4 md:bottom-6 left-1/2 z-50 backdrop-blur-xl rounded-full px-4 py-2 md:px-5 md:py-2.5 shadow-lg border ${
+      className={`fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-50 backdrop-blur-xl rounded-full px-4 py-2 md:px-5 md:py-2.5 shadow-lg border ${
         isDark
           ? 'bg-luxury-card/90 border-luxury-border shadow-gold-sm'
           : 'bg-white/90 border-slate-200'
       }`}
-      initial={{ y: 80, opacity: 0, x: '-50%' }}
-      animate={{ y: 0, opacity: 1, x: '-50%' }}
-      transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 100, damping: 15 }}
+      initial={false}
     >
       <div className="flex items-center space-x-3 md:space-x-5">
         <motion.a

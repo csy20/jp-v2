@@ -7,7 +7,7 @@ export const PHONE_DISPLAY = '+91 7024367848'
 export const PHONE_TEL = 'tel:+917024367848'
 
 export const STORE_NAME = 'SITASONI™ trend'
-export const STORE_TAGLINE = "PREMIUM MEN'S & WOMEN'S WEAR"
+export const STORE_TAGLINE = "Premium Men's & Women's Wear"
 export const OWNER_NAME = 'Jageshwar Sahu'
 export const EMAIL = 'support@sitasoni.in'
 export const STORE_URL = 'https://sitasoni.com'

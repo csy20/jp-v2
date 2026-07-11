@@ -1,12 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import {
   OWNER_NAME,
   QUOTE,
   socialLinks,
-  STORE_NAME,
   STORE_TAGLINE,
   STORE_URL,
   STORE_DOMAIN,
@@ -34,13 +32,10 @@ export default function HeroSection() {
 
           <div className="grid lg:grid-cols-12 min-h-0 lg:min-h-[560px]">
             {/* ── Left: copy ── */}
-            <motion.div
+            <div
               className="relative z-10 lg:col-span-6 xl:col-span-5 flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-14 py-6 sm:py-10 md:py-14
                 bg-gradient-to-br from-white via-white to-amber-50/40
                 dark:from-[#0c0c0c] dark:via-[#0e0e0e] dark:to-[#14100a]"
-              initial={{ opacity: 0, x: -28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
             >
               {/* Eyebrow */}
               <div className="flex items-center gap-3 mb-5">
@@ -51,39 +46,31 @@ export default function HeroSection() {
               </div>
 
               <h1 className="font-display text-[2rem] sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-slate-900 dark:text-white mb-3 sm:mb-4">
-                {OWNER_NAME.split(' ').map((word, i) => (
-                  <span key={word} className="inline-block mr-[0.28em] last:mr-0">
-                    <motion.span
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 + i * 0.12, duration: 0.5 }}
-                    >
-                      {word}
-                    </motion.span>
-                  </span>
-                ))}
+                {OWNER_NAME}
               </h1>
 
-              <p className="text-sm sm:text-base md:text-lg text-slate-500 dark:text-slate-400 mb-5 sm:mb-7 max-w-md">
-                Founder & Owner of{' '}
-                <span className="font-semibold text-gold-600 dark:text-gold-400">
-                  {STORE_NAME}
-                </span>
-              </p>
+              <div className="mb-5 sm:mb-7 max-w-md">
+                <p className="text-sm sm:text-base md:text-lg text-slate-500 dark:text-slate-400">
+                  Founder & Owner of
+                </p>
+                <p className="mt-1 font-display text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-slate-900 dark:text-white">
+                  SITASONI<span className="text-[10px] align-super">™</span>{' '}
+                  <span className="text-[#F4C430] font-semibold">trend</span>
+                </p>
+                <p className="mt-1 text-xs sm:text-sm tracking-[0.14em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9]">
+                  {STORE_TAGLINE}
+                </p>
+              </div>
 
               {/* Socials */}
               <div className="flex items-center gap-2.5 mb-5 sm:mb-8">
-                {socialLinks.map((s, i) => (
-                  <motion.a
+                {socialLinks.map((s) => (
+                  <a
                     key={s.name}
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={s.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + i * 0.08 }}
                     className="w-10 h-10 rounded-full flex items-center justify-center
                       border border-slate-200 dark:border-white/10
                       bg-white/80 dark:bg-white/5
@@ -92,15 +79,12 @@ export default function HeroSection() {
                       hover:shadow-gold-sm transition-all duration-300"
                   >
                     <s.icon className="w-4 h-4" />
-                  </motion.a>
+                  </a>
                 ))}
               </div>
 
               {/* Quote */}
-              <motion.blockquote
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55, duration: 0.5 }}
+              <blockquote
                 className="relative max-w-md rounded-2xl px-5 py-4
                   border border-gold-500/20 dark:border-gold-500/25
                   bg-gradient-to-br from-amber-50/90 to-white
@@ -116,15 +100,10 @@ export default function HeroSection() {
                 <footer className="mt-2.5 text-right text-sm font-medium text-gold-600 dark:text-gold-400">
                   — {QUOTE.author}
                 </footer>
-              </motion.blockquote>
+              </blockquote>
 
               {/* CTA row */}
-              <motion.div
-                className="mt-5 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-              >
+              <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -145,16 +124,11 @@ export default function HeroSection() {
                     {STORE_DOMAIN}
                   </span>
                 </a>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* ── Right: portrait stage ── */}
-            <motion.div
-              className="relative lg:col-span-6 xl:col-span-7 min-h-[300px] sm:min-h-[400px] md:min-h-[440px] lg:min-h-full"
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.75, delay: 0.12, ease: 'easeOut' }}
-            >
+            <div className="relative lg:col-span-6 xl:col-span-7 min-h-[300px] sm:min-h-[400px] md:min-h-[440px] lg:min-h-full">
               {/* Stage background — light */}
               <div
                 className="absolute inset-0 dark:hidden"
@@ -211,30 +185,6 @@ export default function HeroSection() {
                       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent dark:from-black/25" />
                     </div>
 
-                    {/* Floating brand badge — sits on photo, clear of gold arch edge */}
-                    <div className="absolute top-5 sm:top-6 left-1/2 -translate-x-1/2 z-20 w-[88%] max-w-[210px] sm:max-w-[240px]">
-                      <div className="flex items-center gap-2 rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 bg-white/95 dark:bg-[#0c0c0c]/92 backdrop-blur-md shadow-lg border border-white/90 dark:border-white/10">
-                        <div className="shrink-0 rounded-md overflow-hidden bg-[#0033A0]">
-                          <Image
-                            src="/sitasoni-logo.jpg"
-                            alt="SITASONI trend logo"
-                            width={40}
-                            height={40}
-                            className="w-9 h-9 sm:w-10 sm:h-10 object-cover"
-                          />
-                        </div>
-                        <div className="leading-tight min-w-0">
-                          <p className="text-[10px] sm:text-[11px] font-bold theme-heading tracking-wide truncate">
-                            SITASONI<span className="text-[7px] align-super">™</span>{' '}
-                            <span className="text-[#F4C430] font-semibold">trend</span>
-                          </p>
-                          <p className="text-[6px] sm:text-[7px] tracking-[0.12em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9] leading-snug">
-                            {STORE_TAGLINE}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
                     {/* Floating name chip on photo */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%]">
                       <div className="rounded-xl px-3 py-2.5 text-center
@@ -253,7 +203,7 @@ export default function HeroSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

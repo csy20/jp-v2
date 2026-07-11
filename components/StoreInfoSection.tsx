@@ -24,7 +24,7 @@ export default function StoreInfoSection() {
         <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
           {/* Location */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="theme-card-soft rounded-xl p-4 md:p-5 border-gold-glow flex flex-col"
@@ -65,7 +65,7 @@ export default function StoreInfoSection() {
 
           {/* Timing */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
@@ -89,7 +89,7 @@ export default function StoreInfoSection() {
 
           {/* Call & WhatsApp */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -120,7 +120,7 @@ export default function StoreInfoSection() {
 
           {/* Store reel */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
