@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { OWNER_NAME, QUOTE, socialLinks, STORE_NAME, WHATSAPP_URL, PHONE_DISPLAY } from '@/lib/constants'
+import { OWNER_NAME, QUOTE, socialLinks, STORE_NAME, STORE_TAGLINE, WHATSAPP_URL, PHONE_DISPLAY } from '@/lib/constants'
 import WhatsAppIcon from './WhatsAppIcon'
 
 export default function HeroSection() {
@@ -172,14 +172,25 @@ export default function HeroSection() {
 
               {/* Brand badge */}
               <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20">
-                <div className="rounded-xl overflow-hidden shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-[#0033A0]">
-                  <Image
-                    src="/sitasoni-logo.jpg"
-                    alt="SITASONI trend logo"
-                    width={88}
-                    height={88}
-                    className="w-16 h-16 sm:w-[5.5rem] sm:h-[5.5rem] object-contain"
-                  />
+                <div className="flex items-center gap-2 rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-white/95 dark:bg-[#0c0c0c]/90 backdrop-blur-sm">
+                  <div className="shrink-0 rounded-lg overflow-hidden bg-[#0033A0]">
+                    <Image
+                      src="/sitasoni-logo.jpg"
+                      alt="SITASONI trend logo"
+                      width={48}
+                      height={48}
+                      className="w-10 h-10 sm:w-12 sm:h-12 object-cover"
+                    />
+                  </div>
+                  <div className="leading-tight">
+                    <p className="text-[11px] sm:text-xs font-bold theme-heading tracking-wide">
+                      SITASONI<span className="text-[8px] align-super">™</span>{' '}
+                      <span className="text-[#F4C430] font-semibold">trend</span>
+                    </p>
+                    <p className="text-[7px] sm:text-[8px] tracking-[0.14em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9]">
+                      {STORE_TAGLINE}
+                    </p>
+                  </div>
                 </div>
               </div>
 

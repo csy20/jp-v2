@@ -8,25 +8,38 @@ export default function Logo({
   size?: 'sm' | 'md' | 'lg'
   showTagline?: boolean
 }) {
-  const height = size === 'sm' ? 40 : size === 'lg' ? 72 : 52
-  const tagline = size === 'sm' ? 'text-[7px]' : 'text-[8px]'
+  const icon = size === 'sm' ? 40 : size === 'lg' ? 56 : 48
+  const title = size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-xl' : 'text-base'
+  const trend = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm'
+  const tagline = size === 'sm' ? 'text-[7px]' : size === 'lg' ? 'text-[10px]' : 'text-[8px]'
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex items-center gap-2.5">
       <Image
         src="/sitasoni-logo.jpg"
-        alt="SITASONI trend — company logo"
-        width={height}
-        height={height}
-        className="w-auto object-contain rounded-md"
-        style={{ height, width: 'auto', maxWidth: height * 2.2 }}
+        alt="SITASONI trend logo"
+        width={icon}
+        height={icon}
+        className="shrink-0 rounded-lg object-cover shadow-sm"
+        style={{ width: icon, height: icon }}
         priority={size !== 'sm'}
       />
-      {showTagline && (
-        <div className={`${tagline} tracking-[0.18em] theme-muted uppercase leading-none`}>
-          {STORE_TAGLINE}
+      <div className="leading-tight min-w-0">
+        <div className={`font-display font-bold tracking-wide ${title}`}>
+          <span className="theme-heading">SITASONI</span>
+          <span className="text-[10px] align-super theme-heading ml-0.5">™</span>
+          <span className={`ml-1 font-sans font-semibold text-[#F4C430] ${trend}`}>
+            trend
+          </span>
         </div>
-      )}
+        {showTagline && (
+          <div
+            className={`${tagline} tracking-[0.18em] uppercase leading-snug mt-0.5 font-semibold text-[#0033A0] dark:text-[#5b8fd9]`}
+          >
+            {STORE_TAGLINE}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
