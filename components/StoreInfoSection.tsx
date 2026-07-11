@@ -81,7 +81,7 @@ export default function StoreInfoSection() {
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
                 <li key={d} className="flex justify-between border-b border-slate-200/60 dark:border-luxury-border/60 pb-1">
                   <span>{d}</span>
-                  <span className="theme-heading font-medium">9 AM – 8 PM</span>
+                  <span className="theme-heading font-medium">{STORE_HOURS.shortLabel}</span>
                 </li>
               ))}
             </ul>

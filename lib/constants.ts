@@ -24,12 +24,13 @@ export const ADDRESS = {
   embedUrl: `https://maps.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&hl=en&z=17&output=embed`,
 }
 
-/** Store open hours — 9 AM – 8 PM every day */
+/** Store open hours — 10 AM – 7 PM every day */
 export const STORE_HOURS = {
-  open: 9,
-  close: 20,
-  label: '9:00 AM – 8:00 PM',
-  supportLabel: '9:00 AM – 8:00 PM',
+  open: 10,
+  close: 19,
+  label: '10:00 AM – 7:00 PM',
+  supportLabel: '10:00 AM – 7:00 PM',
+  shortLabel: '10 AM – 7 PM',
 }
 
 export const QUOTE = {

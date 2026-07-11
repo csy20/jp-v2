@@ -4,24 +4,54 @@ import { STORE_TAGLINE } from '@/lib/constants'
 export default function Logo({
   size = 'md',
   showTagline = true,
+  mobileCompact = false,
 }: {
   size?: 'sm' | 'md' | 'lg'
   showTagline?: boolean
+  /** Tighter layout for mobile header: smaller mark, tagline from sm breakpoint up */
+  mobileCompact?: boolean
 }) {
-  const icon = size === 'sm' ? 40 : size === 'lg' ? 56 : 48
-  const title = size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-xl' : 'text-base'
-  const trend = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm'
-  const tagline = size === 'sm' ? 'text-[7px]' : size === 'lg' ? 'text-[10px]' : 'text-[8px]'
+  const icon =
+    size === 'sm'
+      ? mobileCompact
+        ? 'w-8 h-8 sm:w-10 sm:h-10'
+        : 'w-10 h-10'
+      : size === 'lg'
+        ? 'w-14 h-14'
+        : 'w-12 h-12'
+  const title =
+    size === 'sm'
+      ? mobileCompact
+        ? 'text-xs sm:text-sm'
+        : 'text-sm'
+      : size === 'lg'
+        ? 'text-xl'
+        : 'text-base'
+  const trend =
+    size === 'sm'
+      ? mobileCompact
+        ? 'text-[10px] sm:text-xs'
+        : 'text-xs'
+      : size === 'lg'
+        ? 'text-base'
+        : 'text-sm'
+  const tagline =
+    size === 'sm'
+      ? mobileCompact
+        ? 'text-[6px] sm:text-[7px]'
+        : 'text-[7px]'
+      : size === 'lg'
+        ? 'text-[10px]'
+        : 'text-[8px]'
 
   return (
-    <div className="flex items-center gap-2.5">
+    <div className={`flex items-center ${mobileCompact ? 'gap-2 sm:gap-2.5' : 'gap-2.5'}`}>
       <Image
         src="/sitasoni-logo.jpg"
         alt="SITASONI trend logo"
-        width={icon}
-        height={icon}
-        className="shrink-0 rounded-lg object-cover shadow-sm"
-        style={{ width: icon, height: icon }}
+        width={40}
+        height={40}
+        className={`shrink-0 rounded-lg object-cover shadow-sm ${icon}`}
         priority={size !== 'sm'}
       />
       <div className="leading-tight min-w-0">
@@ -34,7 +64,9 @@ export default function Logo({
         </div>
         {showTagline && (
           <div
-            className={`${tagline} tracking-[0.18em] uppercase leading-snug mt-0.5 font-semibold text-[#0033A0] dark:text-[#5b8fd9]`}
+            className={`${tagline} tracking-[0.18em] uppercase leading-snug mt-0.5 font-semibold text-[#0033A0] dark:text-[#5b8fd9] ${
+              mobileCompact ? 'hidden sm:block' : ''
+            }`}
           >
             {STORE_TAGLINE}
           </div>

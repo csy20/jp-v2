@@ -25,7 +25,7 @@ export default function HoursSection() {
     const list = Array.from({ length: 6 }, (_, i) => {
       const d = new Date(now)
       d.setDate(now.getDate() + i)
-      // All days open 9–8 per business hours
+      // All days open 10–7 per business hours
       const dayOpen = true
       return {
         key: d.toISOString(),

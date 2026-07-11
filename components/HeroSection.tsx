@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative pt-24 md:pt-28 pb-10 md:pb-14 px-4 md:px-6 overflow-hidden"
+      className="relative pt-[4.25rem] sm:pt-24 md:pt-28 pb-8 sm:pb-10 md:pb-14 px-3 sm:px-4 md:px-6 overflow-hidden"
     >
       {/* Ambient scene light */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -22,10 +22,10 @@ export default function HeroSection() {
           {/* Soft gold edge line */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/60 to-transparent z-20" />
 
-          <div className="grid lg:grid-cols-12 min-h-[480px] md:min-h-[540px] lg:min-h-[560px]">
+          <div className="grid lg:grid-cols-12 min-h-0 lg:min-h-[560px]">
             {/* ── Left: copy ── */}
             <motion.div
-              className="relative z-10 lg:col-span-6 xl:col-span-5 flex flex-col justify-center px-6 sm:px-8 md:px-12 lg:px-14 py-10 md:py-14
+              className="relative z-10 lg:col-span-6 xl:col-span-5 flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-14 py-6 sm:py-10 md:py-14
                 bg-gradient-to-br from-white via-white to-amber-50/40
                 dark:from-[#0c0c0c] dark:via-[#0e0e0e] dark:to-[#14100a]"
               initial={{ opacity: 0, x: -28 }}
@@ -40,7 +40,7 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <h1 className="font-display text-[2.6rem] sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-slate-900 dark:text-white mb-4">
+              <h1 className="font-display text-[2rem] sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-slate-900 dark:text-white mb-3 sm:mb-4">
                 {OWNER_NAME.split(' ').map((word, i) => (
                   <span key={word} className="inline-block mr-[0.28em] last:mr-0">
                     <motion.span
@@ -55,7 +55,7 @@ export default function HeroSection() {
                 ))}
               </h1>
 
-              <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 mb-7 max-w-md">
+              <p className="text-sm sm:text-base md:text-lg text-slate-500 dark:text-slate-400 mb-5 sm:mb-7 max-w-md">
                 Founder & Owner of{' '}
                 <span className="font-semibold text-gold-600 dark:text-gold-400">
                   {STORE_NAME}
@@ -63,7 +63,7 @@ export default function HeroSection() {
               </p>
 
               {/* Socials */}
-              <div className="flex items-center gap-2.5 mb-8">
+              <div className="flex items-center gap-2.5 mb-5 sm:mb-8">
                 {socialLinks.map((s, i) => (
                   <motion.a
                     key={s.name}
@@ -110,7 +110,7 @@ export default function HeroSection() {
 
               {/* CTA row */}
               <motion.div
-                className="mt-8 flex flex-wrap items-center gap-3"
+                className="mt-5 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
@@ -119,14 +119,14 @@ export default function HeroSection() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-semibold px-5 py-2.5 shadow-md transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-semibold px-5 py-2.5 shadow-md transition-colors w-full sm:w-auto"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
                   Chat on WhatsApp
                 </a>
                 <a
                   href="#store"
-                  className="inline-flex items-center gap-2 rounded-full border border-gold-500/40 text-gold-700 dark:text-gold-400 text-sm font-semibold px-5 py-2.5 hover:bg-gold-500/10 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/40 text-gold-700 dark:text-gold-400 text-sm font-semibold px-5 py-2.5 hover:bg-gold-500/10 transition-colors w-full sm:w-auto"
                 >
                   Visit Store Info
                 </a>
@@ -135,7 +135,7 @@ export default function HeroSection() {
 
             {/* ── Right: portrait stage ── */}
             <motion.div
-              className="relative lg:col-span-6 xl:col-span-7 min-h-[380px] sm:min-h-[440px] lg:min-h-full"
+              className="relative lg:col-span-6 xl:col-span-7 min-h-[300px] sm:min-h-[400px] md:min-h-[440px] lg:min-h-full"
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.75, delay: 0.12, ease: 'easeOut' }}
@@ -170,24 +170,24 @@ export default function HeroSection() {
               {/* Vertical gold accent rail */}
               <div className="absolute left-0 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-gold-500/40 to-transparent hidden lg:block" />
 
-              {/* Brand badge */}
-              <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20">
-                <div className="flex items-center gap-2 rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-white/95 dark:bg-[#0c0c0c]/90 backdrop-blur-sm">
+              {/* Brand badge — desktop only; header already shows logo on mobile */}
+              <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20 hidden lg:block">
+                <div className="flex items-center gap-2 rounded-xl px-3 py-2.5 shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-white/95 dark:bg-[#0c0c0c]/90 backdrop-blur-sm">
                   <div className="shrink-0 rounded-lg overflow-hidden bg-[#0033A0]">
                     <Image
                       src="/sitasoni-logo.jpg"
                       alt="SITASONI trend logo"
                       width={48}
                       height={48}
-                      className="w-10 h-10 sm:w-12 sm:h-12 object-cover"
+                      className="w-12 h-12 object-cover"
                     />
                   </div>
                   <div className="leading-tight">
-                    <p className="text-[11px] sm:text-xs font-bold theme-heading tracking-wide">
+                    <p className="text-xs font-bold theme-heading tracking-wide">
                       SITASONI<span className="text-[8px] align-super">™</span>{' '}
                       <span className="text-[#F4C430] font-semibold">trend</span>
                     </p>
-                    <p className="text-[7px] sm:text-[8px] tracking-[0.14em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9]">
+                    <p className="text-[8px] tracking-[0.14em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9]">
                       {STORE_TAGLINE}
                     </p>
                   </div>
@@ -195,8 +195,8 @@ export default function HeroSection() {
               </div>
 
               {/* Portrait frame */}
-              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-4 sm:px-8 lg:pr-10 xl:pr-16">
-                <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[400px]">
+              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-3 sm:px-8 lg:pr-10 xl:pr-16 pb-2 sm:pb-0">
+                <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[400px]">
                   {/* Glow behind portrait */}
                   <div className="absolute -inset-6 sm:-inset-8 rounded-[50%] bg-gold-400/20 dark:bg-gold-500/25 blur-3xl" />
 

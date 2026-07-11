@@ -11,9 +11,9 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl border-b border-slate-200/60 dark:border-luxury-border/80 bg-white/80 dark:bg-luxury-black/80 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-[72px] flex items-center justify-between gap-4">
-        <a href="#home" className="shrink-0">
-          <Logo size="sm" />
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 h-14 sm:h-16 md:h-[72px] flex items-center justify-between gap-2 sm:gap-4">
+        <a href="#home" className="shrink-0 min-w-0 max-w-[calc(100%-2.5rem)]">
+          <Logo size="sm" mobileCompact />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7">
