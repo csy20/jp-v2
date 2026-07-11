@@ -10,7 +10,8 @@ export const STORE_NAME = 'SITASONI™ trend'
 export const STORE_TAGLINE = "PREMIUM MEN'S & WOMEN'S WEAR"
 export const OWNER_NAME = 'Jageshwar Sahu'
 export const EMAIL = 'support@sitasoni.in'
-export const STORE_URL = 'https://sitasoni.in'
+export const STORE_URL = 'https://sitasoni.com'
+export const STORE_DOMAIN = 'sitasoni.com'
 
 const MAP_QUERY = 'SITASONI trend, Nawagarh, Bemetara Road, Chhattisgarh, India'
 

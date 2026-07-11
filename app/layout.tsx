@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sitasoni.in'),
+  metadataBase: new URL('https://sitasoni.com'),
   title: 'SITASONI™ trend — Premium Men\'s & Women\'s Wear | Jageshwar Sahu',
   description:
     'SITASONI trend by Jageshwar Sahu — premium men\'s & women\'s fashion in Nawagarh, Chhattisgarh. Quality shirts, jeans, t-shirts, ethnic wear and more.',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'SITASONI™ trend — Premium Men\'s & Women\'s Wear',
     description:
       'Premium men\'s & women\'s fashion by Jageshwar Sahu. Visit our store in Nawagarh, Chhattisgarh.',
-    url: 'https://sitasoni.in',
+    url: 'https://sitasoni.com',
     siteName: 'SITASONI Trend',
     images: [
       {

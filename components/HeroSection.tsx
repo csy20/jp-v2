@@ -2,7 +2,17 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { OWNER_NAME, QUOTE, socialLinks, STORE_NAME, STORE_TAGLINE, WHATSAPP_URL, PHONE_DISPLAY } from '@/lib/constants'
+import {
+  OWNER_NAME,
+  QUOTE,
+  socialLinks,
+  STORE_NAME,
+  STORE_TAGLINE,
+  STORE_URL,
+  STORE_DOMAIN,
+  WHATSAPP_URL,
+  PHONE_DISPLAY,
+} from '@/lib/constants'
 import WhatsAppIcon from './WhatsAppIcon'
 
 export default function HeroSection() {
@@ -125,10 +135,15 @@ export default function HeroSection() {
                   Chat on WhatsApp
                 </a>
                 <a
-                  href="#store"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/40 text-gold-700 dark:text-gold-400 text-sm font-semibold px-5 py-2.5 hover:bg-gold-500/10 transition-colors w-full sm:w-auto"
+                  href={STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex flex-col items-center justify-center rounded-full border border-slate-200 dark:border-gold-500/30 bg-white dark:bg-white/5 text-slate-800 dark:text-gold-300 text-sm font-semibold px-5 py-2 hover:bg-slate-50 dark:hover:bg-gold-500/10 transition-colors w-full sm:w-auto shadow-sm"
                 >
-                  Visit Store Info
+                  <span>Visit Store</span>
+                  <span className="text-[10px] font-medium text-[#0033A0] dark:text-[#5b8fd9] tracking-wide">
+                    {STORE_DOMAIN}
+                  </span>
                 </a>
               </motion.div>
             </motion.div>
@@ -170,43 +185,19 @@ export default function HeroSection() {
               {/* Vertical gold accent rail */}
               <div className="absolute left-0 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-gold-500/40 to-transparent hidden lg:block" />
 
-              {/* Brand badge — desktop only; header already shows logo on mobile */}
-              <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20 hidden lg:block">
-                <div className="flex items-center gap-2 rounded-xl px-3 py-2.5 shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-white/95 dark:bg-[#0c0c0c]/90 backdrop-blur-sm">
-                  <div className="shrink-0 rounded-lg overflow-hidden bg-[#0033A0]">
-                    <Image
-                      src="/sitasoni-logo.jpg"
-                      alt="SITASONI trend logo"
-                      width={48}
-                      height={48}
-                      className="w-12 h-12 object-cover"
-                    />
-                  </div>
-                  <div className="leading-tight">
-                    <p className="text-xs font-bold theme-heading tracking-wide">
-                      SITASONI<span className="text-[8px] align-super">™</span>{' '}
-                      <span className="text-[#F4C430] font-semibold">trend</span>
-                    </p>
-                    <p className="text-[8px] tracking-[0.14em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9]">
-                      {STORE_TAGLINE}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* Portrait frame */}
-              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-3 sm:px-8 lg:pr-10 xl:pr-16 pb-2 sm:pb-0">
+              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-3 sm:px-8 lg:pr-10 xl:pr-16 pb-2 sm:pb-0 pt-2 sm:pt-0">
                 <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[400px]">
                   {/* Glow behind portrait */}
                   <div className="absolute -inset-6 sm:-inset-8 rounded-[50%] bg-gold-400/20 dark:bg-gold-500/25 blur-3xl" />
 
                   {/* Arch frame */}
                   <div className="relative aspect-[3/4] w-full">
-                    {/* Outer gold ring */}
-                    <div className="absolute -inset-[3px] rounded-t-full rounded-b-2xl bg-gradient-to-b from-gold-300 via-gold-500/80 to-gold-700/40 dark:from-gold-400 dark:via-gold-600/70 dark:to-transparent opacity-90" />
+                    {/* Outer gold ring — stays behind photo content */}
+                    <div className="absolute -inset-[3px] rounded-t-full rounded-b-2xl bg-gradient-to-b from-gold-300 via-gold-500/80 to-gold-700/40 dark:from-gold-400 dark:via-gold-600/70 dark:to-transparent opacity-90 z-0" />
 
                     {/* Inner photo clip */}
-                    <div className="absolute inset-0 rounded-t-full rounded-b-2xl overflow-hidden bg-slate-200 dark:bg-[#1a1510] shadow-2xl">
+                    <div className="absolute inset-0 z-[1] rounded-t-full rounded-b-2xl overflow-hidden bg-slate-200 dark:bg-[#1a1510] shadow-2xl">
                       <Image
                         src="/jaggu_profile.jpeg"
                         alt={OWNER_NAME}
@@ -216,14 +207,36 @@ export default function HeroSection() {
                         priority
                       />
                       {/* Cinematic overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 dark:from-black/60 dark:to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent dark:from-black/60" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent dark:from-black/25" />
-                      {/* Gold sheen at top of arch */}
-                      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-gold-200/20 dark:from-gold-400/15 to-transparent" />
+                    </div>
+
+                    {/* Floating brand badge — sits on photo, clear of gold arch edge */}
+                    <div className="absolute top-5 sm:top-6 left-1/2 -translate-x-1/2 z-20 w-[88%] max-w-[210px] sm:max-w-[240px]">
+                      <div className="flex items-center gap-2 rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 bg-white/95 dark:bg-[#0c0c0c]/92 backdrop-blur-md shadow-lg border border-white/90 dark:border-white/10">
+                        <div className="shrink-0 rounded-md overflow-hidden bg-[#0033A0]">
+                          <Image
+                            src="/sitasoni-logo.jpg"
+                            alt="SITASONI trend logo"
+                            width={40}
+                            height={40}
+                            className="w-9 h-9 sm:w-10 sm:h-10 object-cover"
+                          />
+                        </div>
+                        <div className="leading-tight min-w-0">
+                          <p className="text-[10px] sm:text-[11px] font-bold theme-heading tracking-wide truncate">
+                            SITASONI<span className="text-[7px] align-super">™</span>{' '}
+                            <span className="text-[#F4C430] font-semibold">trend</span>
+                          </p>
+                          <p className="text-[6px] sm:text-[7px] tracking-[0.12em] uppercase font-semibold text-[#0033A0] dark:text-[#5b8fd9] leading-snug">
+                            {STORE_TAGLINE}
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Floating name chip on photo */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 w-[90%]">
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%]">
                       <div className="rounded-xl px-3 py-2.5 text-center
                         bg-white/85 dark:bg-black/55 backdrop-blur-md
                         border border-white/50 dark:border-gold-500/20
