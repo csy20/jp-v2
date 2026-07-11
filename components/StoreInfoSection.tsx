@@ -39,16 +39,17 @@ export default function StoreInfoSection() {
               <br />
               {ADDRESS.line3}
             </p>
-            <div className="relative h-28 rounded-lg overflow-hidden mb-3 bg-slate-200 dark:bg-black/40">
+            <div className="relative h-36 sm:h-40 rounded-lg overflow-hidden mb-3 bg-slate-200 dark:bg-black/40">
               <iframe
-                title="Store map"
+                title="SITASONI trend store location on Google Maps"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 loading="lazy"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
                 src={ADDRESS.embedUrl}
-                className="grayscale-[30%] dark:opacity-80"
+                className="dark:opacity-90"
               />
             </div>
             <a

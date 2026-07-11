@@ -93,7 +93,7 @@ export default function LocationSection() {
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.7394024371477!2d83.37425!3d21.828889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2d1e1e1e1e1e1d%3A0x1e1e1e1e1e1e1e1e!2sNawagarh%2C%20Chhattisgarh%20491001%2C%20India!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://maps.google.com/maps?q=SITASONI+trend%2C+Nawagarh%2C+Bemetara+Road%2C+Chhattisgarh%2C+India&hl=en&z=17&output=embed"
               />
             </motion.div>
 

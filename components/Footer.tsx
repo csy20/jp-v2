@@ -20,9 +20,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           <div className="col-span-2 md:col-span-1">
-            <Logo size="sm" />
+            <Logo size="sm" showTagline={false} />
             <p className="theme-muted text-xs mt-3 max-w-[200px] leading-relaxed">
-              Premium men&apos;s wear from Nawagarh, Chhattisgarh.
+              Premium men&apos;s &amp; women&apos;s wear from Nawagarh, Chhattisgarh.
             </p>
           </div>
 

@@ -15,21 +15,25 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://sitasoni.in'),
-  title: 'SITASONI™ trend — Premium Men\'s Wear | Jageshwar Sahu',
+  title: 'SITASONI™ trend — Premium Men\'s & Women\'s Wear | Jageshwar Sahu',
   description:
-    'SITASONI trend by Jageshwar Sahu — premium menswear in Nawagarh, Chhattisgarh. Quality shirts, jeans, t-shirts and more.',
+    'SITASONI trend by Jageshwar Sahu — premium men\'s & women\'s fashion in Nawagarh, Chhattisgarh. Quality shirts, jeans, t-shirts, ethnic wear and more.',
   keywords:
-    'SITASONI Trend, Jageshwar Sahu, premium menswear, cloth store, Nawagarh, Chhattisgarh, fashion',
+    'SITASONI Trend, Jageshwar Sahu, premium fashion, menswear, womenswear, cloth store, Nawagarh, Chhattisgarh',
   authors: [{ name: 'Jageshwar Sahu' }],
+  icons: {
+    icon: '/sitasoni-logo.jpg',
+    apple: '/sitasoni-logo.jpg',
+  },
   openGraph: {
-    title: 'SITASONI™ trend — Premium Men\'s Wear',
+    title: 'SITASONI™ trend — Premium Men\'s & Women\'s Wear',
     description:
-      'Premium quality fashion by Jageshwar Sahu. Visit our store in Nawagarh, Chhattisgarh.',
+      'Premium men\'s & women\'s fashion by Jageshwar Sahu. Visit our store in Nawagarh, Chhattisgarh.',
     url: 'https://sitasoni.in',
     siteName: 'SITASONI Trend',
     images: [
       {
-        url: '/jaggu_profile.jpeg',
+        url: '/sitasoni-logo.jpg',
         width: 800,
         height: 600,
         alt: 'Jageshwar Sahu — SITASONI trend',

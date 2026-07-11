@@ -22,7 +22,7 @@ export default function HoursSection() {
   const { openNow, days } = useMemo(() => {
     const now = new Date()
     const open = isOpenNow(now)
-    const list = Array.from({ length: 5 }, (_, i) => {
+    const list = Array.from({ length: 6 }, (_, i) => {
       const d = new Date(now)
       d.setDate(now.getDate() + i)
       // All days open 9–8 per business hours

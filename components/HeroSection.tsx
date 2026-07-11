@@ -172,20 +172,14 @@ export default function HeroSection() {
 
               {/* Brand badge */}
               <div className="absolute top-5 right-5 sm:top-7 sm:right-7 z-20">
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 flex items-center justify-center shadow-lg shadow-gold-600/30 ring-2 ring-white/40 dark:ring-gold-400/20">
-                    <span className="font-display font-bold text-xl sm:text-2xl text-luxury-black leading-none">
-                      S
-                    </span>
-                  </div>
-                  <div className="text-center leading-tight">
-                    <div className="text-[10px] sm:text-[11px] tracking-[0.18em] font-semibold text-gold-700 dark:text-gold-400">
-                      SITASONI™
-                    </div>
-                    <div className="text-[9px] tracking-[0.22em] uppercase text-slate-500 dark:text-slate-400">
-                      trend
-                    </div>
-                  </div>
+                <div className="rounded-xl overflow-hidden shadow-lg shadow-black/20 ring-2 ring-white/50 dark:ring-gold-400/20 bg-[#0033A0]">
+                  <Image
+                    src="/sitasoni-logo.jpg"
+                    alt="SITASONI trend logo"
+                    width={88}
+                    height={88}
+                    className="w-16 h-16 sm:w-[5.5rem] sm:h-[5.5rem] object-contain"
+                  />
                 </div>
               </div>
 
