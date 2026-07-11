@@ -128,7 +128,7 @@ export default function HeroSection() {
             </div>
 
             {/* ── Right: portrait stage ── */}
-            <div className="relative lg:col-span-6 xl:col-span-7 min-h-[300px] sm:min-h-[400px] md:min-h-[440px] lg:min-h-full">
+            <div className="relative lg:col-span-6 xl:col-span-7 py-6 sm:py-8 lg:py-0 lg:min-h-[560px]">
               {/* Stage background — light */}
               <div
                 className="absolute inset-0 dark:hidden"
@@ -160,10 +160,10 @@ export default function HeroSection() {
               <div className="absolute left-0 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-gold-500/40 to-transparent hidden lg:block" />
 
               {/* Portrait frame */}
-              <div className="absolute inset-0 flex items-end justify-center lg:justify-end px-3 sm:px-8 lg:pr-10 xl:pr-16 pb-2 sm:pb-0 pt-2 sm:pt-0">
-                <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[400px]">
+              <div className="relative flex flex-col items-center lg:absolute lg:inset-0 lg:items-end lg:justify-end px-3 sm:px-8 lg:pr-10 xl:pr-16">
+                <div className="relative w-full max-w-[240px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[400px]">
                   {/* Glow behind portrait */}
-                  <div className="absolute -inset-6 sm:-inset-8 rounded-[50%] bg-gold-400/20 dark:bg-gold-500/25 blur-3xl" />
+                  <div className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-[50%] bg-gold-400/20 dark:bg-gold-500/25 blur-3xl pointer-events-none" />
 
                   {/* Arch frame */}
                   <div className="relative aspect-[3/4] w-full">
@@ -176,17 +176,17 @@ export default function HeroSection() {
                         src="/jaggu_profile.jpeg"
                         alt={OWNER_NAME}
                         fill
-                        className="object-cover object-[center_15%] scale-[1.02]"
-                        sizes="(max-width: 768px) 300px, 400px"
+                        className="object-cover object-[center_12%] scale-[1.02]"
+                        sizes="(max-width: 768px) 240px, 400px"
                         priority
                       />
                       {/* Cinematic overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent dark:from-black/60" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent dark:from-black/50" />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent dark:from-black/25" />
                     </div>
 
-                    {/* Floating name chip on photo */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%]">
+                    {/* Name chip — desktop overlay only */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%] hidden lg:block">
                       <div className="rounded-xl px-3 py-2.5 text-center
                         bg-white/85 dark:bg-black/55 backdrop-blur-md
                         border border-white/50 dark:border-gold-500/20
@@ -199,6 +199,22 @@ export default function HeroSection() {
                           {PHONE_DISPLAY} · Nawagarh
                         </p>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Name chip — below photo on mobile/tablet */}
+                  <div className="mt-3 w-full lg:hidden">
+                    <div className="rounded-xl px-3 py-2.5 text-center
+                      bg-white dark:bg-[#161616]
+                      border border-slate-200 dark:border-gold-500/20
+                      shadow-md"
+                    >
+                      <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                        {OWNER_NAME}
+                      </p>
+                      <p className="text-[11px] text-gold-700 dark:text-gold-400 tracking-wide">
+                        {PHONE_DISPLAY} · Nawagarh
+                      </p>
                     </div>
                   </div>
                 </div>
