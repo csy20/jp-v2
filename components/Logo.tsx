@@ -8,13 +8,13 @@ export default function Logo({
 }: {
   size?: 'sm' | 'md' | 'lg'
   showTagline?: boolean
-  /** Tighter layout for mobile header: smaller mark, tagline from sm breakpoint up */
+  /** Tighter layout for mobile header: smaller mark */
   mobileCompact?: boolean
 }) {
   const icon =
     size === 'sm'
       ? mobileCompact
-        ? 'w-8 h-8 sm:w-10 sm:h-10'
+        ? 'w-9 h-9 sm:w-10 sm:h-10'
         : 'w-10 h-10'
       : size === 'lg'
         ? 'w-14 h-14'
@@ -22,7 +22,7 @@ export default function Logo({
   const title =
     size === 'sm'
       ? mobileCompact
-        ? 'text-xs sm:text-sm'
+        ? 'text-sm sm:text-[15px]'
         : 'text-sm'
       : size === 'lg'
         ? 'text-xl'
@@ -30,7 +30,7 @@ export default function Logo({
   const trend =
     size === 'sm'
       ? mobileCompact
-        ? 'text-[10px] sm:text-xs'
+        ? 'text-xs sm:text-sm'
         : 'text-xs'
       : size === 'lg'
         ? 'text-base'
@@ -38,7 +38,7 @@ export default function Logo({
   const tagline =
     size === 'sm'
       ? mobileCompact
-        ? 'text-[6px] sm:text-[7px]'
+        ? 'text-[6.5px] sm:text-[7.5px]'
         : 'text-[7px]'
       : size === 'lg'
         ? 'text-[10px]'
@@ -56,17 +56,17 @@ export default function Logo({
       />
       <div className="leading-tight min-w-0">
         <div className={`font-display font-bold tracking-wide ${title}`}>
-          <span className="theme-heading">SITASONI</span>
-          <span className="text-[10px] align-super theme-heading ml-0.5">™</span>
+          <span className="text-[#0033A0] dark:text-white">SITASONI</span>
+          <span className="text-[10px] align-super text-[#0033A0] dark:text-white ml-0.5">
+            ™
+          </span>
           <span className={`ml-1 font-sans font-semibold text-[#F4C430] ${trend}`}>
             trend
           </span>
         </div>
         {showTagline && (
           <div
-            className={`${tagline} tracking-[0.18em] uppercase leading-snug mt-0.5 font-semibold text-[#0033A0] dark:text-[#5b8fd9] ${
-              mobileCompact ? 'hidden sm:block' : ''
-            }`}
+            className={`${tagline} tracking-[0.18em] uppercase leading-snug mt-0.5 font-semibold text-[#0033A0] dark:text-[#5b8fd9]`}
           >
             {STORE_TAGLINE}
           </div>

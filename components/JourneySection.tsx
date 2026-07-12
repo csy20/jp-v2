@@ -21,7 +21,7 @@ export default function JourneySection() {
           {items.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={false}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
